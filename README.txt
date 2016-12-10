@@ -61,5 +61,5 @@ creative_20161210_v1	原檔案路徑為cplatformnew/example/  原檔案名稱為
 						8. 把跳至應用頁面註解起來  
 								// window.location.href = "cmapapp-bootstrap-master/index.php";
 								
-								123
+								123321
 >>>>>>> d3b1d8b53dc32b18bb01c9dbcea3283e91f72048
