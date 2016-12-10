@@ -120,7 +120,7 @@ mindmaps.OpenDocumentPresenter = function(eventBus, mindmapModel, view, filePick
                 data:({}),
                 type:"POST",
                 dataType:'text',
-                success: function(msg){
+                success: function(msg){console.log('getmindmap json at here');
 
                                         //alert(msg);
        ////////////////////////////這str=msg; 這三行放在ajax success裡面

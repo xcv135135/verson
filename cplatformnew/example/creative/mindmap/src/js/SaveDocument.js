@@ -205,8 +205,12 @@ $( ".node-container" ).each(function( index ) {
             data: ( { "mindmap" : doc.prepareSave().serialize()} ),
             success: function(msg) {
               console.log(msg);
+			  console.log('如果要尋找下一頁新增應用頁面請尋找新增應用123');
+			  alert('儲存完成，正在計算分群結果，請稍後...');
+			  view.hideSaveDialog();
                window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
-              window.location.href = "cmapapp-bootstrap-master/index.php";
+			   gototest9(x);
+              //window.location.href = "cmapapp-bootstrap-master/index.php";
              
            // $("#temp_area").val(encodeURI(JSON.stringify(x)));
 
@@ -222,6 +226,37 @@ $( ".node-container" ).each(function( index ) {
               } );
       }
        // return doc.prepareSave().serialize();///就是這個王八蛋(儲存),不return值回去就不會執行儲存的指令(不會有另存新檔的視窗跳出)!!!
+	   
+	   function gototest9(x)
+	   {
+		   $.ajax({
+            type: "POST",
+            url: "../../test9.php",
+            dataType : "json",
+            data: ( { "mindmap" : doc.prepareSave().serialize()} ),
+            success: function(msg) {
+              console.log(msg);
+			  console.log('儲存完成   正在計算分群結果');
+			  msg = JSON.stringify(msg);
+			  mindmapModel.setDocument(mindmaps.Document.fromJSON(msg));
+			  alert('計算完成');
+               window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
+             // window.location.href = "cmapapp-bootstrap-master/index.php";
+             
+           // $("#temp_area").val(encodeURI(JSON.stringify(x)));
+
+           //  $("form[name='temp_form']").submit();
+            }
+              ,
+            complete: function(){},
+            error: function(xhr,exception){//alert(xhr.responseText);
+                alert("readyState: "+xhr.readyState+"\nstatus: "+xhr.status);alert("responseText: "+xhr.responseText);
+                }
+            
+               
+              } );
+		   
+	   }
   };
 
   /**

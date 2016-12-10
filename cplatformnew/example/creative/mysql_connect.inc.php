@@ -6,9 +6,9 @@ $db_server = "localhost";
 //資料庫名稱
 $db_name = "ideasave";
 //資料庫管理者帳號
-$db_user = "root";
+$db_user = "nckues";
 //資料庫管理者密碼
-$db_passwd = "";
+$db_passwd = "nckulina";
 
 //對資料庫連線
 if(!@mysql_connect($db_server, $db_user, $db_passwd))

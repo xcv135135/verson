@@ -52,7 +52,7 @@
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="well sidebar-nav">
             <ul class="nav">
-              <li class="active"><a href="#myModal3" data-toggle="modal">心智圖(mindmap)介紹</a></li>
+              <li class="active"><a href="#myModal" data-toggle="modal">心智圖(mindmap)介紹</a></li>
               <!--<li class="active"><a href="#myModal4" data-toggle="modal">概念圖(concept map)介紹</a></li>-->
             </ul>
           </div><!--/.well -->

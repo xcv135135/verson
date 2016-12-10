@@ -38,6 +38,7 @@
           <input type="checkbox" value="remember-me"> Remember me
         </label> -->
         <button class="btn btn-lg btn-primary btn-block" type="submit">註冊</button>
+		<input typr="button" class="btn btn-lg btn-primary btn-block" value="回登入頁" onclick="location.href='index.php'">
       </form>
 
     </div> <!-- /container -->

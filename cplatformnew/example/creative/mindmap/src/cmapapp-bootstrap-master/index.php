@@ -497,7 +497,7 @@ function sessiontest(){
                        
                       </div> 
                       
-                      <input type="button" value="新增應用" class="btn btn-primary" id="add" onclick="checkapplication()"></input>
+                      <input type="button" value="新增應用123" class="btn btn-primary" id="add" onclick="checkapplication()"></input>
 
                       <br>
                           

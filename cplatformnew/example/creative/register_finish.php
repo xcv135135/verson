@@ -37,7 +37,7 @@ if($id != null && $pw != null && $pw2 != null && $pw == $pw2)
              $_SESSION['logincheck']=true;
 
 			 echo '註冊成功!';
-			 echo '<meta http-equiv=REFRESH CONTENT=3;url=test11.php>';
+			 echo '<meta http-equiv=REFRESH CONTENT=3;url=nestable.php>';
 			
 			 }
 		else
