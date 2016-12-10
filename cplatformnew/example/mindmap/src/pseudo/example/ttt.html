@@ -1,0 +1,191 @@
+<html>
+<head>
+<style type="text/css">
+body { 
+    margin: 0;
+}
+#launchPad {
+    float:left;
+    border: 1px solid #eaeaea;
+    background-color: #f5f5f5;
+}
+#dropZone {
+    float:right;
+    border: 1px solid #eaeaea;
+    background-color: #ffffcc;
+}
+.card { 
+    width: 150px; 
+    padding: 5px 10px;
+    margin:5px;
+    border:1px solid #ccc;
+    background-color: #eaeaea;
+}
+.stack {
+    width: 180px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    margin: 20px;
+}
+.stackHdr {
+    background-color: #eaeaea;
+    border: 1px solid #fff;
+    padding: 5px 
+}
+.stackDrop1, .stackDrop2 {
+    min-height:100px;
+    padding: 15px;
+}
+</style>
+
+<script type="text/javascript" src="../jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../jquery-ui.js"></script>
+<script type="text/javascript" src="../jquery-ui.min.js"></script>
+<script type="text/javascript" src="../jquery-ui-1.9.2.js"></script>
+</head>
+<body>
+<div id="launchPad">    
+    <div id="a" class="card" onclick="changetype(this.id)">
+        apple
+    </div> 
+    <div class="card">
+        orange
+    </div> 
+    <div class="card">
+        banana
+    </div> 
+    <div class="card">
+        car
+    </div> 
+    <div class="card">
+        bus
+    </div> 
+</div>
+
+<div id="dropZone">
+    <div class="stack">
+        <div class="stackHdr">
+            title 1 here 
+        </div>
+        <div class="stackDrop1">
+            
+        </div>
+    </div>
+    
+    <div class="stack">
+        <div class="stackHdr">
+            title 2 here
+        </div>
+        <div class="stackDrop2">
+            
+        </div>
+    </div>
+</div>
+<script>
+    function changetype(x)
+{
+document.getElementById(x).className="editable";
+
+ document.getElementById(x).contentEditable="true";
+}
+
+
+
+
+
+
+$("#launchPad").height($(window).height() - 20);
+var dropSpace = $(window).width() - $("#launchPad").width();
+$("#dropZone").width(dropSpace - 70);
+$("#dropZone").height($("#launchPad").height());
+
+$(".card").draggable({
+    appendTo: "body",
+    cursor: "move",
+    helper: 'clone',
+    revert: "invalid"
+});
+
+$("#launchPad").droppable({
+    tolerance: "intersect",
+    accept: ".card",
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function(event, ui) {
+        $("#launchPad").append($(ui.draggable));
+    }
+});
+
+$(".stackDrop1").droppable({
+    tolerance: "intersect",
+    accept: ".card",
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function(event, ui) {        
+        $(this).append($(ui.draggable));
+    }
+});
+
+$(".stackDrop2").droppable({
+    tolerance: "intersect",
+    accept: ".card",
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function(event, ui) {        
+        $(this).append($(ui.draggable));
+    }
+});
+/////////////////////clone/////////////////
+$(function(){  
+ //Make every clone image unique.  
+   var counts = [0];
+    var resizeOpts = { 
+      handles: "all" ,autoHide:true
+    };    
+   $(".card").draggable({
+                         helper: "clone",
+                         //Create counter
+                         start: function() { counts[0]++; }
+                        });
+
+$("#stackDrop1").droppable({
+       drop: function(e, ui){
+               if(ui.draggable.hasClass("card")) {
+     $(this).append($(ui.helper).clone());
+   //Pointing to the dragImg class in dropHere and add new class.
+         $("#stackDrop1 .card").addClass("item-"+counts[0]);
+            
+                
+   //Remove the current class (ui-draggable and dragImg)
+         $("#stackDrop1 .item-"+counts[0]).removeClass("dragImg ui-draggable ui-draggable-dragging");
+
+$(".item-"+counts[0]).dblclick(function() {
+$(this).remove();
+});     
+	make_draggable($(".item-"+counts[0])); 
+      $(".imgSize-"+counts[0]).resizable(resizeOpts);     
+       }
+
+       }
+      });
+
+
+var zIndex = 0;
+function make_draggable(elements)
+{	
+	elements.draggable({
+		containment:'parent',
+		start:function(e,ui){ ui.helper.css('z-index',++zIndex); },
+		stop:function(e,ui){
+		}
+	});
+}    
+
+
+    
+   });
+
+</script>
+
+</body>
+</html>

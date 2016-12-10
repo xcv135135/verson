@@ -1,0 +1,6 @@
+虛擬碼撰寫:
+                <div>
+                <span id="ol"><textarea  id="li1"   style="resize:none;width:40px;height:500px;font-size:14px;float:left;overflow-y:hidden" disabled>1.</textarea></span>
+               <textarea id="t1"   wrap="off" style="resize:none;width:1100px;height:500px;"  onkeyup="keyUp(this.id[this.id.length-1])"  onscroll="G('li').scrollTop = this.scrollTop;" oncontextmenu="return false" spellcheck="false" >
+              </textarea>
+              </div>

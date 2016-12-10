@@ -1,0 +1,207 @@
+<html>
+<head>
+<meta charset="utf-8">
+</head>
+<style type="text/css">
+body { 
+    margin: 0;
+}
+#launchPad {
+    float:left;
+    border: 1px solid #eaeaea;
+    background-color: #f5f5f5;
+}
+#dropZone {
+    float:right;
+    border: 1px solid #eaeaea;
+    background-color: #ffffcc;
+}
+.card { 
+    width: 150px; 
+    padding: 5px 10px;
+    margin:5px;
+    border:1px solid #ccc;
+    background-color: #eaeaea;
+ }
+
+.stack {
+    width: 180px;
+    border: 1px solid #ccc;
+    background-color: #f5f5f5;
+    margin: 20px;
+}
+.stackHdr {
+    background-color: #eaeaea;
+    border: 1px solid #fff;
+    padding: 5px 
+}
+.stackDrop1, .stackDrop2 {
+    min-height:100px;
+    padding: 15px;
+}
+.trash{
+    width: 150px; 
+    padding: 5px 10px;
+    margin:5px;
+    border:1px solid #ccc;
+}
+.xicon {
+      margin-top: 4px;
+      position: absolute;
+      margin-left: -17px;
+      color: #FFF;
+      font: message-box;
+      text-decoration: none;
+  }
+  .xicon:hover {
+      background-color: #fff;
+      color: #000;
+      width: 13px;
+      height: 20px;
+      text-align: center;
+  }
+.remove-drag-hover {
+      background-color: #ED4949 !important;
+  }  
+</style>
+
+<script type="text/javascript" src="../jquery-1.9.1.min.js"></script>
+<script type="text/javascript" src="../jquery-ui.js"></script>
+<script type="text/javascript" src="../jquery-ui.min.js"></script>
+<script type="text/javascript" src="../jquery-ui-1.9.2.js"></script>
+<script type="text/javascript" src="../jquery.mobile-1.3.2.min.css"></script>
+<script type="text/javascript" src="../jquery.mobile-1.3.2.min.js"></script>
+
+</head>
+<body oncontextmenu="return false" onload="ii();">
+<script>
+function ii(){
+    var a=window.location.toString().split(';')[1];
+    var a = decodeURI(a);
+    alert(a);
+}
+
+</script>
+<div id="launchPad">    
+    <div id="drag1" class="card" >
+       <span> for</span>
+    </div> 
+    <div id="drag2" class="card">
+        <span>while</span>
+    </div> 
+    <div id="drag3"  class="card" >
+        <span>if</span>
+    </div> 
+    <div id="drag4"  class="card">
+        <span>補充說明</span>
+    </div> 
+   
+</div>
+
+
+
+
+<div id="dropZone">
+    <div class="stack" style="width:300px;height:600px;">
+        <div class="stackHdr">
+           drop here 
+        </div>
+        <div class="stackDrop1" id="droppable"style="width:300px;height:600px;" >
+            
+        </div>
+    </div>
+		  <div style="position:absolute; top:430px;right:0px;">
+				 <div class="trash">
+						<div class="stackHdr">
+						   Remove drop here
+						</div>
+						<div class="stackDrop2" id="remove-drag">
+							
+						</div>
+				</div>
+			</div>	
+   
+</div>
+<script>
+var divnum=0;////////////////div數量
+
+
+
+$("#launchPad").height($(window).height() - 20);
+var dropSpace = $(window).width() - $("#launchPad").width();
+$("#dropZone").width(dropSpace - 70);
+$("#dropZone").height($("#launchPad").height());
+
+$("#launchPad").droppable({
+    tolerance: "intersect",
+    accept: ".card",
+    activeClass: "ui-state-default",
+    hoverClass: "ui-state-hover",
+    drop: function(event, ui) {
+        $("#launchPad").append($(ui.draggable));
+    }
+});
+
+
+
+var x = null;
+//Make element draggable
+$(".card").draggable({
+    helper: 'clone',
+    cursor: 'move',
+    tolerance: 'fit',
+    revert: true
+});
+
+$("#droppable").droppable({
+    	accept: '.card',
+	activeClass: "drop-area",
+   	    drop: function (e, ui) {
+        if ($(ui.draggable)[0].id != "") {
+
+             divnum++;////////////div數量++
+            x = ui.helper.clone();
+            ui.helper.remove();
+			x.attr('id', 'dragdiv'+divnum );////////////賦予clone的div id編號 
+            x.draggable({
+                helper: 'original',
+                cursor: 'move',
+                containment: '#dropZone',
+                tolerance: 'fit',
+                drop: function (event, ui) {
+                    $(ui.draggable).remove();
+                }
+            });
+
+            x.resizable({
+                maxHeight: $('#droppable').height(),
+                maxWidth: $('#droppable').width()
+            });
+            x.addClass('remove');
+			x.attr('contentEditable', 'true' );
+		
+            var el = $("<div><a href='Javascript:void(0)' class=\"xicon delete\" title=\"Remove\"></a></div>");
+            $(el).insertAfter($(x.find('img')));////////找到img後，在其後面插入el元素
+            x.appendTo('#droppable'); //////////////////把建好的x元素加到droppable區
+            $('.delete').on('click', function () {
+                $(this).parent().parent('span').remove();
+            });
+            $('.delete').parent().parent('span').dblclick(function () {
+                $(this).remove();
+            });
+        }
+    }
+});
+
+$("#remove-drag").droppable({
+    drop: function (event, ui) {
+        $(ui.draggable).remove();
+    },
+    hoverClass: "remove-drag-hover",
+    accept: '.remove'
+});
+
+</script>
+
+</body>
+</html>

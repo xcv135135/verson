@@ -1,0 +1,29 @@
+<html>
+<head>
+	<meta charset="utf-8">
+	<script src="../../assets/js/jquery.js"></script>
+    <script src="../../dist/js/bootstrap.min.js"></script>
+    <script src="offcanvas.js"></script>
+    <script src="../../js/holder.js"></script>
+    <script src="../../js/modal.js"></script>
+    <script src="../../js/transition.js"></script>
+<title></title>
+<script type="text/javascript"> 
+ function get() {
+ 	
+ 	var e = document.getElementById("i");
+    if(e != null) {
+   alert(e.contentWindow.document.body.innerHTML);
+}
+
+}
+</script>
+</head>
+<body id="c">
+<input type="button" value="iframe content" id="a" name="back" href="#myModa4" data-toggle="modal" class="btn btn-primary" onclick="get()" align="center"></input>
+<input type="button" value="put to new page" id="p" name="put" href="#myModa4" data-toggle="modal" class="btn btn-primary" onclick="" align="center"></input>
+<div id="show" style="dislay:none;width:100%;height:100%" > 
+    <iframe id = "i"  style="width:100%;height:100%" src="backtest.html"> 
+  </div>
+</body>
+</html>

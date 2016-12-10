@@ -1,0 +1,93 @@
+
+課程大綱
+ <h3></h3>
+  <ul class="nav">
+    <a href="#" onclick="change_course('')">   <h4> </h4>   </a>
+    <li><a href="#" onclick="change_course('')">   </a></li>
+   
+  </ul>
+
+
+
+
+
+
+
+課程內容
+
+
+<html>
+  <body>
+    <div class="container" id="container">
+      <div class="col-xs-12 col-sm-9">
+
+      <div class="jumbotron">
+           <h2><p>          </p></h2><br>
+
+
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+
+
+
+
+
+
+      </div>
+      </div>
+    </div>
+  </body>
+</html>
+
+
+
+
+
+
+放程式碼
+<div class="alert alert-success">
+  ...
+</div>
+
+編譯完資訊
+OUTPUT:
+
+<div class="alert alert-info">
+  ...
+</div>
+
+
+摺疊的效果
+<button type="button" class="btn btn-danger" data-toggle="collapse" data-target="#demo">
+          simple collapsible
+</button>
+<div id="demo" class="collapse in"> … </div>
+
+
+<span style="color:red">   </span>
+
+<font style="background-color:#999999">
+
+</font><br>
+
+
+
+&nbsp;
+
+
+<img src="./images/@p1.png" alt=""><br>
+
+
+
+
+
+
+
+
+
+

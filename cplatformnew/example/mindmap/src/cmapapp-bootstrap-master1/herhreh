@@ -1,0 +1,18 @@
+<html>
+<title>tjtrjhtrj</title>
+<head>
+<script>
+function getidea(){
+                var idea=document.getElementById('selectdiv').value;
+                var textbox=document.createElement('div');
+                textbox.style.width="60px";
+                textbox.style.height="60px";
+                textbox.style.border="2px solid #d3d3d3";
+                ///textbox.innerHTML=idea;    
+               }
+</script>
+</head>
+<body>
+<input type="button" value="add" class="btn btn-primary" id="add" onclick="getidea()"></input>
+</body>
+</html>

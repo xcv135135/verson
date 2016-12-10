@@ -1,0 +1,19 @@
+
+映像名稱                       PID 工作階段名稱      工作階段 #    RAM使用量
+========================= ======== ================ =========== ============
+System Idle Process              0 Services                   0         24 K
+System                           4 Services                   0      5,260 K
+csrss.exe                      524 Services                   0      6,296 K
+svchost.exe                    476 Services                   0    223,760 K
+svchost.exe                    516 Services                   0     53,268 K
+svchost.exe                   1388 Services                   0     22,564 K
+svchost.exe                   1632 Services                   0      8,228 K
+avguard.exe                   1988 Services                   0     33,504 K
+IAStorDataMgrSvc.exe          3800 Services                   0     41,056 K
+explorer.exe                  3448 RDP-Tcp#0                  2     45,276 K
+wmpnetwk.exe                  4396 Services                   0     10,964 K
+httpd.exe                     4960 Services                   0     35,116 K
+CKIPServer.exe                4364 RDP-Tcp#0                  2    368,932 K
+chrome.exe                    5988 RDP-Tcp#0                  2     92,064 K
+chrome.exe                    2192 RDP-Tcp#0                  2     73,908 K
+WmiPrvSE.exe                  5884 Services                   0      8,828 K
