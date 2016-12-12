@@ -9,6 +9,17 @@ $mindmap = $_POST['mindmap'];
 $success = "success";
 $rightnow = get_Datetime_Now();
 $fail = "fail";$sql = "insert into mindmap (username,mindmap,rightnow) values ('$user','$mindmap','$rightnow')";
+/*$sql = "CREATE TABLE IF NOT EXISTS `kmindmap` (
+  `no` smallint(255) NOT NULL AUTO_INCREMENT,
+  `username` text NOT NULL,
+  `kmindmap` longtext NOT NULL,
+  `kallcaption` longtext NOT NULL,
+  `kcluster` longtext NOT NULL,
+  `rightnow` datetime NOT NULL,
+  `jsonstring` text NOT NULL,
+  PRIMARY KEY (`no`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8";
+*/
 
 	if(mysql_query($sql))
 			 { 

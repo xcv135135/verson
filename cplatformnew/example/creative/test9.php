@@ -431,6 +431,27 @@ $json = json_encode($obj , true);
 
 
 
+$str_caption = implode("|",$all_caption);
+$str_bk = implode("|",$bk);
+
+$success = "success";
+$rightnow = get_Datetime_Now();
+$fail = "fail";$sql = "insert into kmindmap (username,kmindmap,kallcaption,kcluster,rightnow) values ('$user','$json','$str_caption','$str_bk','$rightnow')";
+
+	if(mysql_query($sql))
+			 { 
+			
+				//echo $mindmap;
+			 }
+		else
+		{
+			 //echo $fail;
+		}
+function get_Datetime_Now() {
+    date_default_timezone_set('Asia/Taipei');
+    return  date("Y-m-d H:i:s");
+}
+
 
 
 

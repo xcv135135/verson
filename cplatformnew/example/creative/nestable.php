@@ -45,7 +45,7 @@
     <script src="../../js/transition.js"></script>
   </head>
 
-  <body>
+  <body style="overflow-y: hidden;>
 
     <div><textarea id="temp_area" name="temp_area" style="display:none"></textarea><div><!--/.存切割好的mindmap -->
       <div><textarea id="temp1_area" name="temp1_area" style="display:none"></textarea><div><!--/.存完整的mindmap -->
@@ -239,7 +239,7 @@
    </div><!--end of row row-offcanvas-->
   </div><!--end of container-->
   <div id="show" style="display:none;width:100%;height:100%" > 
-    <iframe id = "i"  style="width:100%;height:100%"> 
+    <iframe id = "i"  style="width:100%;height:90%;"> 
   </div>
  </body>
 </html>

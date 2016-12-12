@@ -208,7 +208,7 @@ $( ".node-container" ).each(function( index ) {
 			  console.log('如果要尋找下一頁新增應用頁面請尋找新增應用123');
 			  alert('儲存完成，正在計算分群結果，請稍後...');
 			  view.hideSaveDialog();
-               window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
+               //window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
 			   gototest9(x);
               //window.location.href = "cmapapp-bootstrap-master/index.php";
              
@@ -240,8 +240,9 @@ $( ".node-container" ).each(function( index ) {
 			  msg = JSON.stringify(msg);
 			  mindmapModel.setDocument(mindmaps.Document.fromJSON(msg));
 			  alert('計算完成');
-               window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
+               //window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
              // window.location.href = "cmapapp-bootstrap-master/index.php";
+              window.location.href = "../../codeopen/index.html";
              
            // $("#temp_area").val(encodeURI(JSON.stringify(x)));
 
