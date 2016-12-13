@@ -1,3 +1,13 @@
+  <?php
+           session_start(); 
+           //if($_SESSION['class']==0)
+           //echo 'hi, 學生 ' ; 
+           //else
+           //echo 'hi, 教師 ' ; 
+           echo 'hi, 學生 ' ; 
+           echo $_SESSION['username'];
+	?>
+  
   <html>
    <head> 
     <meta charset="utf-8">
@@ -26,6 +36,22 @@
                 baidu.src = "mindmap/src/mindmapindex.php"; 
                 document.getElementById('show').style.display='inline'; 
                    } 
+		function bd1(){ 
+                document.getElementById('conta').style.display ='none';
+                document.getElementById('sidebar').style.display ='none';
+                document.getElementById('a').style.display ='inline';
+                var baidu = document.getElementById("i"); 
+                baidu.src = "codeopen/index.html"; 
+                document.getElementById('show').style.display='inline'; 
+                   } 
+		function bd2(){ 
+                document.getElementById('conta').style.display ='none';
+                document.getElementById('sidebar').style.display ='none';
+                document.getElementById('a').style.display ='inline';
+                var baidu = document.getElementById("i"); 
+                baidu.src = "mindmap/src/cmapapp-bootstrap-master/index.php"; 
+                document.getElementById('show').style.display='inline'; 
+                   } 
        function change()
                     {
                       //var src="";
@@ -45,10 +71,10 @@
     <script src="../../js/transition.js"></script>
   </head>
 
-  <body style="overflow-y: hidden;>
+  <body style="overflow-y: hidden">
 
-    <div><textarea id="temp_area" name="temp_area" style="display:none"></textarea><div><!--/.存切割好的mindmap -->
-      <div><textarea id="temp1_area" name="temp1_area" style="display:none"></textarea><div><!--/.存完整的mindmap -->
+    <div><textarea id="temp_area" name="temp_area" style="display:none"></textarea></div><!--/.存切割好的mindmap -->
+      <div><textarea id="temp1_area" name="temp1_area" style="display:none"></textarea></div><!--/.存完整的mindmap -->
         <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
           <div class="well sidebar-nav">
             <ul class="nav">
@@ -67,6 +93,9 @@
           <ul class="nav navbar-nav" id="bar">
             <li><a href="index.php ">回登入頁</a></li>
             <li><a href="#myModal" data-toggle="modal" >心智圖(mindmap)介紹</a></li>
+            <li><a href="#" onClick="bd();" >心智圖頁面</a></li>
+            <li><a href="#" onClick="bd1();" >搜尋頁面</a></li>
+            <li><a href="#" onClick="bd2();" >應用頁面</a></li>
             <!--<li><a href="#myModal4" data-toggle="modal" >概念圖(concept map)介紹</a></li>-->
             <!-- <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
@@ -83,15 +112,7 @@
           </ul>
         <form class="navbar-form navbar-right"action="connect.php" method="post">
             <div class="form-group" style="color:white">
-               <?php
-           session_start(); 
-           //if($_SESSION['class']==0)
-           //echo 'hi, 學生 ' ; 
-           //else
-           //echo 'hi, 教師 ' ; 
-           echo 'hi, 學生 ' ; 
-           echo $_SESSION['username'];
-               ?>
+               
             </div>           
            <button type="button" class="btn btn-success" onclick="location.href='loginout.php'">登出</button>
       

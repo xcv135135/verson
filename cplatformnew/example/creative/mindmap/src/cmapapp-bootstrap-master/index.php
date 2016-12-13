@@ -286,6 +286,7 @@ function getidea(){
                 dataType:'text',
                 success: function(msg){
                                         yoyo = 1;////////搞笑用derr 
+										console.log($('#selectdiv'));
                                        },
                 error:function(xhr, ajaxOptions, thrownError){ alert(xhr.status); alert(thrownError);  }
                   });////////////insert idea into database
@@ -412,7 +413,7 @@ function addcombine(){
                        //alert(lastnew);
                        
                        getidea();
-                        $("#selectdiv").val("");
+                        //$("#selectdiv").val("");
                         
                       
   }////////////////////////////////////////////end of addcombine
