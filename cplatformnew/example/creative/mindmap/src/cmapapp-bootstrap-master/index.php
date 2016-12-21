@@ -482,13 +482,13 @@ function sessiontest(){
                             請描述來你所想到的應用(10字以上)，並從你的想法靈感區中，挑選跟你所想到的應用相關的想法，並且將其拖曳到"與應用相關的想法靈感區"，完成後，點選"新增應用"；如果已想不到新應用，請按"完成"。 
                                評分方式:（應用的數量50%，應用創意性50%）
                             <br>   
-                          <div class="dd" id="nestable" style="overflow:auto; height:600px; word-break: break-all">
+                          <div class="dd" id="nestable" style="display:none;overflow:auto; height:600px; word-break: break-all">
                              <ol class="dd-list" id="test">
                 
                             </ol>
                           </div>
 
-                          <div class="dd" id="nestable2" style="overflow:auto; height:600px; word-break: break-all">
+                          <div class="dd" id="nestable2" style="display:none;overflow:auto; height:600px; word-break: break-all">
                                  <ol class="dd-list" id="combinearea"> 
                                     <li class="dd-item" >
                                        <div class="dd-handle" id="tryit">與應用相關的想法靈感區</div>
