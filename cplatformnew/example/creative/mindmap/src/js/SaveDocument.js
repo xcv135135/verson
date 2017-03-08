@@ -240,9 +240,8 @@ $( ".node-container" ).each(function( index ) {
 			  msg = JSON.stringify(msg);
 			  mindmapModel.setDocument(mindmaps.Document.fromJSON(msg));
 			  alert('計算完成');
-               //window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
-             // window.location.href = "cmapapp-bootstrap-master/index.php";
-              window.location.href = "../../codeopen/index.html";
+               window.parent.document.getElementById('temp_area').value=encodeURI(JSON.stringify(x));
+              window.location.href = "cmapapp-bootstrap-master/index.php";
              
            // $("#temp_area").val(encodeURI(JSON.stringify(x)));
 

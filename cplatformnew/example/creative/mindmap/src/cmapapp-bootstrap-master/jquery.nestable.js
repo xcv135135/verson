@@ -34,6 +34,7 @@
             itemClass       : 'dd-item',
             dragClass       : 'dd-dragel',
             handleClass     : 'dd-handle',
+            handleeClass     : 'dd-handlee',
             collapsedClass  : 'dd-collapsed',
             placeClass      : 'dd-placeholder',
             noDragClass     : 'dd-nodrag',
@@ -92,6 +93,12 @@
                         return;
                     }
                     handle = handle.closest('.' + list.options.handleClass);
+                }
+				if (!handle.hasClass(list.options.handleeClass)) {
+                    if (handle.closest('.' + list.options.noDragClass).length) {
+                        return;
+                    }
+                    handle = handle.closest('.' + list.options.handleeClass);
                 }
 
                 if (!handle.length || list.dragEl) {
@@ -403,6 +410,9 @@
                 this.dragEl[0].style.visibility = 'visible';
             }
             if (this.pointEl.hasClass(opt.handleClass)) {
+                this.pointEl = this.pointEl.parent(opt.itemNodeName);
+            }
+			if (this.pointEl.hasClass(opt.handleeClass)) {
                 this.pointEl = this.pointEl.parent(opt.itemNodeName);
             }
             if (this.pointEl.hasClass(opt.emptyClass)) {

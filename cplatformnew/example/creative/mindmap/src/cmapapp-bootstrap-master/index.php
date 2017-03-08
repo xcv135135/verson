@@ -158,10 +158,13 @@ p { line-height: 1.5em; }
   </head>
   
   
-  <body onload="go();sessiontest()">
+  <body onload="get_allcaption();sessiontest()">
 
    <script>
-
+	var all_caption;
+	var kcluster;
+	
+	
     RightNow = new Date();
      
 
@@ -286,7 +289,6 @@ function getidea(){
                 dataType:'text',
                 success: function(msg){
                                         yoyo = 1;////////搞笑用derr 
-										console.log($('#selectdiv'));
                                        },
                 error:function(xhr, ajaxOptions, thrownError){ alert(xhr.status); alert(thrownError);  }
                   });////////////insert idea into database
@@ -413,7 +415,7 @@ function addcombine(){
                        //alert(lastnew);
                        
                        getidea();
-                        //$("#selectdiv").val("");
+                        $("#selectdiv").val("");
                         
                       
   }////////////////////////////////////////////end of addcombine
@@ -447,6 +449,11 @@ function sessiontest(){
                <ul id="uibox" >
                </ul>
               </div><!--/.well -->
+			  <div id = "tips_head" class="well sidebar-nav">提示 : 
+				  <div id = "tips_con" >請先選擇一個核心想法
+				  </div>
+			  </div>
+			  
             </div><!--/span-->
 
     </div>
@@ -482,13 +489,13 @@ function sessiontest(){
                             請描述來你所想到的應用(10字以上)，並從你的想法靈感區中，挑選跟你所想到的應用相關的想法，並且將其拖曳到"與應用相關的想法靈感區"，完成後，點選"新增應用"；如果已想不到新應用，請按"完成"。 
                                評分方式:（應用的數量50%，應用創意性50%）
                             <br>   
-                          <div class="dd" id="nestable" style="display:none;overflow:auto; height:600px; word-break: break-all">
+                          <div class="dd" id="nestable" style="overflow:auto; height:600px; word-break: break-all">
                              <ol class="dd-list" id="test">
                 
                             </ol>
                           </div>
 
-                          <div class="dd" id="nestable2" style="display:none;overflow:auto; height:600px; word-break: break-all">
+                          <div class="dd" id="nestable2" style="overflow:auto; height:600px; word-break: break-all">
                                  <ol class="dd-list" id="combinearea"> 
                                     <li class="dd-item" >
                                        <div class="dd-handle" id="tryit">與應用相關的想法靈感區</div>
@@ -533,24 +540,24 @@ var json = decodeURI(a);
     var nodecaption=newjson.caption;
      nodecaptionarray=nodecaption.split(',');
     //var savediv=document.getElementById("statemachine-demo");
-    $("#test").append("<li class='dd-item'><div class='dd-handle'>"+nodecaptionarray[0]+"</div><ol class='dd-list' id='"+nodeidarray[0]+"'></ol></li>");
+    $("#test").append("<li class='dd-item' data-id='"+nodeidarray[0]+"'><div id='"+all_caption[0]+"' class='dd-handle'>"+all_caption[0]+"</div><ol  id='"+nodeidarray[0]+"' class='dd-list'></ol></li>");
 
 
 
-    for(i=1;i<nodecaptionarray.length;i++)
+    for(i=1;i<all_caption.length;i++)
     {
 
          // alert(document.getElementById(nodeparentidarray[i]).childNodes.length+","+nodecaptionarray[i]);
 
-        if(parseInt(document.getElementById(nodeparentidarray[i]).childNodes.length)<nodecaptionarray.length)
+        if(parseInt(document.getElementById(nodeparentidarray[i]).childNodes.length)<all_caption.length)
         {
                   
-             $("#"+nodeparentidarray[i]).append("<li class='dd-item' data-id='"+nodeidarray[i]+"'><div class='dd-handle'>"+nodecaptionarray[i]+"</div><ol  id='"+nodeidarray[i]+"' class='dd-list'></ol></li>");
+             $("#"+nodeparentidarray[i]).append("<li class='dd-item' data-id='"+nodeidarray[i]+"'><div id='"+all_caption[i]+"' class='dd-handle'>"+all_caption[i]+"</div><ol  id='"+nodeidarray[i]+"' class='dd-list'></ol></li>");
         }
         else
         { 
 
-           $("#"+nodeparentidarray[i]+"> ol").append("<li class='dd-item' data-id='"+nodecaptionarray[i]+"'><div class='dd-handle' id='"+nodeidarray[i]+"'>"+nodecaptionarray[i]+"</div></li>");
+           $("#"+nodeparentidarray[i]+"> ol").append("<li class='dd-item' data-id='"+all_caption[i]+"'><div class='dd-handle' id='"+nodeidarray[i]+"'>"+all_caption[i]+"</div></li>");
 
         }
      }
@@ -576,17 +583,201 @@ var json = decodeURI(a);
         }
     };
 
+	
+	//var all_caption;
+	//var kcluster;
+	
     // activate Nestable for list 1
     $('#nestable').nestable({
         group: 1
     })
-    .on('change', updateOutput);
+    .on('change', updateOutput, function(){
+		
+		var b=document.getElementById("combinearea");
+		console.log(
+			'b.childNodes.length : ',
+			b.childNodes.length			
+		);
+		
+		//nestable2 is empty
+		if(b.childNodes.length == 3)
+		{
+			for(var i = 0 ; i < all_caption.length ; i++)
+			{
+				//console.log(all_caption[i]);
+				//console.log('nestable2 is empty');
+				var v=document.getElementById(all_caption[i]);
+				v.style.background="";
+				v.className-="dd-handle";
+				v.className="dd-handle";
+			}
+			
+			var a=document.getElementById("tips_con");
+			a.innerHTML = "請先選擇一個核心想法";
+		}
+		else
+		{
+			
+			for(var i = 0 ; i < all_caption.length ; i++)
+			{
+				//console.log(all_caption[i]);
+				//console.log('nestable2 is empty');
+				var v=document.getElementById(all_caption[i]);
+				//v.style.background= "#bbb";
+				//v.style.background= "-webkit-linear-gradient(top, #ddd 0%, #bbb 100%)";
+				v.style.background= "-moz-linear-gradient(top, #bbb 0%, #999 100%)";
+				//v.style.background="linear-gradient(top, #bbb 0%, #999 100%)";
+				//-moz-linear-gradient(top, #bbb 0%, #999 100%);
+				v.className="dd-handle";
+			}
+			
+			
+			var fthink = b.childNodes[2].innerText;
+			fthink = fthink.split('\n');
+			console.log(
+				'fthink : ',
+				fthink);
+			
+			var ffthink;
+			//core idea
+			if(fthink[0] == "Collapse" )
+			{
+				console.log(
+					'fthink[1] : ',
+					fthink[1]
+					);
+				ffthink = fthink[1];
+			}
+			else
+			{
+				console.log(
+					'fthink[0] : ',
+					fthink[0]
+					);
+				ffthink = fthink[0];
+			}
+			
+			console.log(
+					'ffthink : ',
+					ffthink
+					);
+			
+			var num = 0 ;
+			for(var i = 0 ; i < all_caption.length ; i++)
+			{
+				if(ffthink == all_caption[i])
+					num = i;
+			}
+			
+			for(var i = 0 ; i < kcluster.length ; i++)
+			{
+				if(kcluster[i] == kcluster[num])
+				{
+					var v=document.getElementById(all_caption[i]);
+					v.style.background="#82FF82";
+				}
+			}
+			
+			var a=document.getElementById("tips_con");
+			a.innerHTML = "橘色想法為機器推薦適合搭配的想法";
+		}
+	});
 
     // activate Nestable for list 2
     $('#nestable2').nestable({
         group: 1
     })
-    .on('change', updateOutput);
+    .on('change', updateOutput, function(){
+		
+		var b=document.getElementById("combinearea");
+		console.log(
+			'b.childNodes.length : ',
+			b.childNodes.length			
+		);
+		
+		//nestable2 is empty
+		if(b.childNodes.length == 3)
+		{
+			for(var i = 0 ; i < all_caption.length ; i++)
+			{
+				//console.log(all_caption[i]);
+				//console.log('nestable2 is empty');
+				var v=document.getElementById(all_caption[i]);
+				v.style.background="";
+				v.className-="dd-handle";
+				v.className="dd-handle";
+			}
+			
+			var a=document.getElementById("tips_con");
+			a.innerHTML = "請先選擇一個核心想法";
+		}
+		else
+		{
+			
+			for(var i = 0 ; i < all_caption.length ; i++)
+			{
+				//console.log(all_caption[i]);
+				//console.log('nestable2 is empty');
+				var v=document.getElementById(all_caption[i]);
+				//v.style.background= "#bbb";
+				//v.style.background= "-webkit-linear-gradient(top, #ddd 0%, #bbb 100%)";
+				v.style.background= "-moz-linear-gradient(top, #bbb 0%, #999 100%)";
+				//v.style.background="linear-gradient(top, #bbb 0%, #999 100%)";
+				//-moz-linear-gradient(top, #bbb 0%, #999 100%);
+				v.className="dd-handle";
+			}
+			
+			
+			var fthink = b.childNodes[2].innerText;
+			fthink = fthink.split('\n');
+			console.log(
+				'fthink : ',
+				fthink);
+			
+			var ffthink;
+			//core idea
+			if(fthink[0] == "Collapse" )
+			{
+				console.log(
+					'fthink[1] : ',
+					fthink[1]
+					);
+				ffthink = fthink[1];
+			}
+			else
+			{
+				console.log(
+					'fthink[0] : ',
+					fthink[0]
+					);
+				ffthink = fthink[0];
+			}
+			
+			console.log(
+					'ffthink : ',
+					ffthink
+					);
+			
+			var num = 0 ;
+			for(var i = 0 ; i < all_caption.length ; i++)
+			{
+				if(ffthink == all_caption[i])
+					num = i;
+			}
+			
+			for(var i = 0 ; i < kcluster.length ; i++)
+			{
+				if(kcluster[i] == kcluster[num])
+				{
+					var v=document.getElementById(all_caption[i]);
+					v.style.background="#82FF82";
+				}
+			}
+			
+			var a=document.getElementById("tips_con");
+			a.innerHTML = "綠色想法為機器推薦適合搭配的想法";
+		}
+	});
 
     // output initial serialised data
     updateOutput($('#nestable').data('output', $('#nestable-output')));
@@ -608,7 +799,39 @@ var json = decodeURI(a);
 
 }
 
-
+function get_allcaption()
+{
+	$.ajax({
+		url:"../../../getkallcaption.php",
+		data:({}),
+		type:"POST",
+		dataType:'text',
+		success: function(msgg){console.log('getkallcaption at here');
+									all_caption = msgg.split("|");
+									console.log(all_caption);
+									
+									get_kcluster();
+							   },
+		error:function(xhr, ajaxOptions, thrownError){ alert(xhr.status); alert(thrownError);  }
+		  });////////////insert idea into database
+}
+ 	
+function get_kcluster()
+{
+	$.ajax({
+		url:"../../../getkcluster.php",
+		data:({}),
+		type:"POST",
+		dataType:'text',
+		success: function(msgg){console.log('getkcluster at here');
+									kcluster = msgg.split("|");
+									console.log(kcluster);
+								
+									go();
+							   },
+		error:function(xhr, ajaxOptions, thrownError){ alert(xhr.status); alert(thrownError);  }
+		  });////////////insert idea into database
+}
        
 
 
